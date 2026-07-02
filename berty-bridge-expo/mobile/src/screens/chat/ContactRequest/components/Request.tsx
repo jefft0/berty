@@ -171,7 +171,7 @@ const SelectedContent = ({
 				</View>
 			)
 		default:
-			return <UnifiedText>Error: Unknown content name "{contentName}"</UnifiedText>
+			return <UnifiedText>Error: Unknown content name &quot;{contentName}&quot;</UnifiedText>
 	}
 }
 

@@ -1,6 +1,7 @@
 import { IconRegistry } from "@ui-kitten/components";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import React from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import {
 	SafeAreaProvider,
@@ -19,21 +20,23 @@ interface AppCommonProvidersProps {
 
 const AppCommonProviders = ({ children }: AppCommonProvidersProps) => {
 	return (
-		<KeyboardProvider preserveEdgeToEdge>
-			{/* Seed insets from native metrics so safe-area values are correct on the first frame (no jump). */}
-			<SafeAreaProvider initialMetrics={initialWindowMetrics}>
-				<AppDimensionsProvider>
-					<StyleProvider>
-						<ReduxProvider store={reduxStore}>
-							<IconRegistry
-								icons={[EvaIconsPack, FeatherIconsPack, CustomIconsPack]}
-							/>
-							{children}
-						</ReduxProvider>
-					</StyleProvider>
-				</AppDimensionsProvider>
-			</SafeAreaProvider>
-		</KeyboardProvider>
+		<GestureHandlerRootView style={{ flex: 1 }}>
+			<KeyboardProvider preserveEdgeToEdge>
+				{/* Seed insets from native metrics so safe-area values are correct on the first frame (no jump). */}
+				<SafeAreaProvider initialMetrics={initialWindowMetrics}>
+					<AppDimensionsProvider>
+						<StyleProvider>
+							<ReduxProvider store={reduxStore}>
+								<IconRegistry
+									icons={[EvaIconsPack, FeatherIconsPack, CustomIconsPack]}
+								/>
+								{children}
+							</ReduxProvider>
+						</StyleProvider>
+					</AppDimensionsProvider>
+				</SafeAreaProvider>
+			</KeyboardProvider>
+		</GestureHandlerRootView>
 	);
 };
 

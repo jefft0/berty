@@ -96,7 +96,7 @@ const SelectedContent: React.FC<{ contentName: string }> = ({ contentName }) => 
 		case 'fingerprint':
 			return <Fingerprint />
 		default:
-			return <UnifiedText>Error: Unknown content name "{contentName}"</UnifiedText>
+			return <UnifiedText>Error: Unknown content name &quot;{contentName}&quot;</UnifiedText>
 	}
 }
 

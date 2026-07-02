@@ -29,7 +29,7 @@ export const GenericAvatar: React.FC<{
 	size: number
 	style?: AvatarStyle
 	nameSeed: Maybe<string>
-}> = React.memo(({ size, colorSeed, style, nameSeed }) => {
+}> = React.memo(function GenericAvatar({ size, colorSeed, style, nameSeed }) {
 	const colors = useThemeColor()
 
 	return (
@@ -69,7 +69,7 @@ export const HardcodedAvatar: React.FC<{
 	size: number
 	style?: AvatarStyle
 	name: HardcodedAvatarKey
-}> = React.memo(({ size, style, name }) => {
+}> = React.memo(function HardcodedAvatar({ size, style, name }) {
 	const colors = useThemeColor()
 
 	let avatar = hardcodedAvatars[name]
@@ -102,7 +102,7 @@ export const HardcodedAvatar: React.FC<{
 export const AccountAvatar: React.FC<{
 	size: number
 	style?: AvatarStyle
-}> = React.memo(({ size, style }) => {
+}> = React.memo(function AccountAvatar({ size, style }) {
 	const account = useAccount()
 	const colors = useThemeColor()
 	return (
@@ -120,7 +120,7 @@ const NameAvatar: React.FC<{
 	size: number
 	style?: AvatarStyle
 	nameSeed: Maybe<string>
-}> = React.memo(({ colorSeed, size, style, nameSeed }) => {
+}> = React.memo(function NameAvatar({ colorSeed, size, style, nameSeed }) {
 	const colors = useThemeColor()
 
 	const h = new SHA3(256).update(colorSeed || '').digest()
@@ -165,7 +165,7 @@ export const ContactAvatar: React.FC<{
 	size: number
 	style?: AvatarStyle
 	fallbackNameSeed?: Maybe<string>
-}> = React.memo(({ publicKey, size, style, fallbackNameSeed }) => {
+}> = React.memo(function ContactAvatar({ publicKey, size, style, fallbackNameSeed }) {
 	const contact = useContact(publicKey)
 	const persistentOptions = useSelector(selectPersistentOptions)
 
@@ -188,7 +188,7 @@ export const MemberAvatar: React.FC<{
 	publicKey: Maybe<string>
 	conversationPublicKey: Maybe<string>
 	size: number
-}> = React.memo(({ publicKey, conversationPublicKey, size }) => {
+}> = React.memo(function MemberAvatar({ publicKey, conversationPublicKey, size }) {
 	const member = useMember(conversationPublicKey, publicKey)
 
 	return <GenericAvatar size={size} colorSeed={publicKey} nameSeed={member?.displayName} />
@@ -199,7 +199,7 @@ export const MultiMemberAvatar: React.FC<{
 	style?: AvatarStyle
 	publicKey?: Maybe<string>
 	fallbackNameSeed?: Maybe<string>
-}> = React.memo(({ size, style, publicKey, fallbackNameSeed }) => {
+}> = React.memo(function MultiMemberAvatar({ size, style, publicKey, fallbackNameSeed }) {
 	const persistentOptions = useSelector(selectPersistentOptions)
 	const conv = useConversation(publicKey)
 	// this useMemo prevents flickering
@@ -231,7 +231,7 @@ export const ConversationAvatar: React.FC<{
 	publicKey: Maybe<string>
 	size: number
 	style?: AvatarStyle
-}> = React.memo(({ publicKey, size, style }) => {
+}> = React.memo(function ConversationAvatar({ publicKey, size, style }) {
 	const conv = useConversation(publicKey)
 	const persistentOptions = useSelector(selectPersistentOptions)
 

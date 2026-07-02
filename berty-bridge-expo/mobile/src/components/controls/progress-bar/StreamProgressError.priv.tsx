@@ -27,7 +27,7 @@ export const StreamProgressErrorPriv: React.FC = () => {
 		>
 			<UnifiedText style={{ color: colors['warning-asset'] }}>{streamError.toString()}</UnifiedText>
 			<UnifiedText style={{ marginTop: gutter }}>
-				Likely couldn't connect to the node, or the connection dropped
+				Likely couldn&apos;t connect to the node, or the connection dropped
 			</UnifiedText>
 			<View style={{ marginTop: gutter }}>
 				<Button onPress={() => restart()} title='Restart' />

@@ -19,7 +19,7 @@ import { isTablet } from '@berty/utils/react-native/constants'
 
 import { ChatInputProps } from './interface'
 
-export const ChatTextInput: React.FC<ChatInputProps> = React.memo(props => {
+export const ChatTextInput: React.FC<ChatInputProps> = React.memo(function ChatTextInput(props) {
 	const { handleTabletSubmit, convPK, editable, placeholder, onChangeText, value } = props
 	const { text, border, flex } = useStyles()
 	const colors = useThemeColor()

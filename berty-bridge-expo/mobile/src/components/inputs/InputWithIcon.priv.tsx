@@ -6,7 +6,8 @@ import { useStyles } from '@berty/contexts/styles'
 import { InputProps } from './interfaces'
 import { StyledInputPriv } from './StyledInput.priv'
 
-export const InputWithIconPriv = React.forwardRef<TextInput, InputProps>((props, ref) => {
+export const InputWithIconPriv = React.forwardRef<TextInput, InputProps>(
+	function InputWithIconPriv(props, ref) {
 	const { margin } = useStyles()
 
 	return (

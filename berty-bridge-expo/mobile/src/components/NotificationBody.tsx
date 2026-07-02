@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { Vibration } from 'react-native'
+import { Vibration, View } from 'react-native'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import GestureRecognizer from 'react-native-swipe-gestures'
 
 import beapi from '@berty/api'
 import { useStyles } from '@berty/contexts/styles'
@@ -28,30 +28,40 @@ const NotificationBody: React.FC<any> = props => {
 	const colors = useThemeColor()
 	const insets = useSafeAreaInsets()
 
+	// Swipe the banner up to dismiss it.
+	const swipeUp = React.useMemo(
+		() =>
+			Gesture.Pan()
+				.runOnJS(true)
+				.onEnd(event => {
+					if (event.translationY < -20 && typeof props.onClose === 'function') {
+						props.onClose()
+					}
+				}),
+		[props.onClose],
+	)
+
 	return (
-		<GestureRecognizer
-			onSwipe={gestureName => {
-				if (gestureName === 'SWIPE_UP' && typeof props.onClose === 'function') {
-					props.onClose()
-				}
-			}}
-			style={[
-				border.shadow.big,
-				flex.tiny,
-				flex.justify.center,
-				column.item.center,
-				{
-					backgroundColor: colors['main-background'],
-					position: 'absolute',
-					marginTop: insets?.top || 0,
-					width: '90%',
-					borderRadius: 15,
-					shadowColor: colors.shadow,
-				},
-			]}
-		>
-			<NotificationContents {...props} />
-		</GestureRecognizer>
+		<GestureDetector gesture={swipeUp}>
+			<View
+				style={[
+					border.shadow.big,
+					flex.tiny,
+					flex.justify.center,
+					column.item.center,
+					{
+						backgroundColor: colors['main-background'],
+						position: 'absolute',
+						marginTop: insets?.top || 0,
+						width: '90%',
+						borderRadius: 15,
+						shadowColor: colors.shadow,
+					},
+				]}
+			>
+				<NotificationContents {...props} />
+			</View>
+		</GestureDetector>
 	)
 }
 

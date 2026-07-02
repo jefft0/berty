@@ -1,4 +1,4 @@
-import { setAudioModeAsync, useAudioPlayer } from "expo-audio";
+import { createAudioPlayer, setAudioModeAsync } from "expo-audio";
 
 import { SoundKey, soundsMap } from "./sound.types";
 
@@ -10,7 +10,15 @@ export const playSound = async (name: SoundKey) => {
 		return;
 	}
 
-	const player = useAudioPlayer(sound);
+	const player = createAudioPlayer(sound);
+
+	// createAudioPlayer requires manual cleanup, so release the player once
+	// playback finishes to avoid leaking native resources.
+	player.addListener("playbackStatusUpdate", status => {
+		if (status.didJustFinish) {
+			player.remove();
+		}
+	});
 
 	await setAudioModeAsync({
 		interruptionMode: "mixWithOthers",

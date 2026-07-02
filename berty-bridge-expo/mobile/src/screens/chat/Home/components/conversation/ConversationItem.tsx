@@ -21,7 +21,7 @@ const interactionsFilter = (inte: ParsedInteraction) =>
 
 export const ConversationItem: React.FC<
 	beapi.messenger.IConversation & { fake?: boolean; isLast: boolean }
-> = React.memo(props => {
+> = React.memo(function ConversationItem(props) {
 	const {
 		fake = false,
 		type = beapi.messenger.Conversation.Type.ContactType,

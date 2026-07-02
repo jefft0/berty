@@ -25,7 +25,7 @@ const useStylesChatDate = () => {
 	}
 }
 
-export const ChatDate: React.FC<ChatDateProps> = React.memo(({ date }) => {
+export const ChatDate: React.FC<ChatDateProps> = React.memo(function ChatDate({ date }) {
 	const _styles = useStylesChatDate()
 	const { border, row } = useStyles()
 	const colors = useThemeColor()

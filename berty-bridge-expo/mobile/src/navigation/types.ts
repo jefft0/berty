@@ -1,4 +1,4 @@
-import { StackScreenProps } from '@react-navigation/stack'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React from 'react'
 import { PermissionStatus } from 'react-native-permissions'
 
@@ -99,6 +99,6 @@ export type ScreensParams = {
 	'Account.Deleting': { selectedAccount: string }
 }
 
-type ScreenProps<T extends keyof ScreensParams> = StackScreenProps<ScreensParams, T>
+type ScreenProps<T extends keyof ScreensParams> = NativeStackScreenProps<ScreensParams, T>
 
 export type ScreenFC<T extends keyof ScreensParams> = React.FC<ScreenProps<T>>

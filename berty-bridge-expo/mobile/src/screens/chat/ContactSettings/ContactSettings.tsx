@@ -54,7 +54,7 @@ const SelectedContent: React.FC<{ contentName: string; publicKey: string | null 
 		case 'info':
 			return <InfoTab contactPk={publicKey} />
 		default:
-			return <UnifiedText>Error: Unknown content name "{contentName}"</UnifiedText>
+			return <UnifiedText>Error: Unknown content name &quot;{contentName}&quot;</UnifiedText>
 	}
 }
 

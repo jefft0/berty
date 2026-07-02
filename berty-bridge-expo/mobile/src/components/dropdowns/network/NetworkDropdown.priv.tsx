@@ -15,7 +15,7 @@ interface NetworkDropdownPrivProps extends NetworkProps {
 }
 
 export const NetworkDropdownPriv = forwardRef(
-	(props: NetworkDropdownPrivProps, ref: ForwardedRef<DropdownRef>) => {
+	function NetworkDropdownPriv(props: NetworkDropdownPrivProps, ref: ForwardedRef<DropdownRef>) {
 		const { border, margin } = useStyles()
 		const colors = useThemeColor()
 

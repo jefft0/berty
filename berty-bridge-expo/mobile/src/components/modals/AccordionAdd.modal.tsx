@@ -1,4 +1,4 @@
-import { multiaddr } from 'multiaddr'
+import { multiaddr } from '@multiformats/multiaddr'
 import React, { FC, useCallback, useState } from 'react'
 import { TFunction, useTranslation } from 'react-i18next'
 import { View } from 'react-native'

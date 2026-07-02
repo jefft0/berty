@@ -17,7 +17,7 @@ export const SuggestionItem: React.FC<{
 	icon: string
 	isLast: boolean
 	style?: ViewStyle
-}> = React.memo(({ displayName, desc, link, addBot, icon, style, isLast }) => {
+}> = React.memo(function SuggestionItem({ displayName, desc, link, addBot, icon, style, isLast }) {
 	const { row, flex, margin } = useStyles()
 
 	return (

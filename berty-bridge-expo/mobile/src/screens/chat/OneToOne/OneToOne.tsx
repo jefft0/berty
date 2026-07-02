@@ -24,7 +24,7 @@ import { IOSOnlyKeyboardAvoidingView } from '@berty/utils/react-native/keyboardA
 const NT = beapi.messenger.StreamEvent.Notified.Type
 
 export const OneToOne: ScreenFC<'Chat.OneToOne'> = React.memo(
-	({ route: { params }, navigation }) => {
+	function OneToOne({ route: { params }, navigation }) {
 		useNotificationsInhibitor(notif => {
 			if (
 				(notif.type === NT.TypeContactRequestSent &&

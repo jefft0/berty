@@ -15,11 +15,10 @@ interface DropdownPrivProps {
 	testID?: string
 }
 
-export const DropdownPriv = forwardRef(
-	(
-		{ icon, children, testID, placeholder = '' }: DropdownPrivProps,
-		ref: ForwardedRef<DropdownRef>,
-	) => {
+export const DropdownPriv = forwardRef(function DropdownPriv(
+	{ icon, children, testID, placeholder = '' }: DropdownPrivProps,
+	ref: ForwardedRef<DropdownRef>,
+) {
 		const { padding, margin } = useStyles()
 		const colors = useThemeColor()
 

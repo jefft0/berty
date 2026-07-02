@@ -25,7 +25,7 @@ export const Message: React.FC<{
 	nextMessage?: ParsedInteraction
 	scrollToCid: (cid: string) => void
 }> = React.memo(
-	({ inte, convKind, members, previousMessage, nextMessage, convPK, scrollToCid }) => {
+	function Message({ inte, convKind, members, previousMessage, nextMessage, convPK, scrollToCid }) {
 		const { text, padding } = useStyles()
 		const colors = useThemeColor()
 

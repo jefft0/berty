@@ -10,7 +10,7 @@ export const MessageStatus: React.FC<{
 	interaction: ParsedInteraction
 	isAccepted: boolean
 	sending?: boolean
-}> = React.memo(({ interaction, isAccepted, sending }) => {
+}> = React.memo(function MessageStatus({ interaction, isAccepted, sending }) {
 	const colors = useThemeColor()
 
 	if (interaction?.type !== beapi.messenger.AppMessage.Type.TypeUserMessage && isAccepted) {

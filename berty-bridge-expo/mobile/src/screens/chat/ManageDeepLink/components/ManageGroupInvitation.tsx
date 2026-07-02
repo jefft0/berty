@@ -49,7 +49,7 @@ const SelectedContent = ({
 		default:
 			return (
 				<UnifiedText style={[padding.horizontal.medium]}>
-					Error: Unknown content name "{contentName}"
+					Error: Unknown content name &quot;{contentName}&quot;
 				</UnifiedText>
 			)
 	}

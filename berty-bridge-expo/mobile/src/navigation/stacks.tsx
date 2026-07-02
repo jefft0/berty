@@ -86,7 +86,7 @@ const isExpoDevClientUrl = (url: string) =>
 // re-reading it would loop (navigate -> mount -> re-read -> navigate).
 let initialUrlHandled = false
 
-const DeepLinkBridge: React.FC = React.memo(() => {
+const DeepLinkBridge: React.FC = React.memo(function DeepLinkBridge() {
 	const navigation = useNavigation<NavigationProp<ScreensParams>>()
 	const dispatch = useAppDispatch()
 	const handledLink = useSelector(selectHandledLink)
@@ -133,20 +133,22 @@ Components = mapValues(RawComponents, SubComponents =>
 	mapValues(
 		SubComponents,
 		(Component: React.FC): React.FC =>
-			React.memo(props => (
-				<>
-					{Platform.OS !== 'web' && !('OpeningAccount' in SubComponents) ? (
-						<DeepLinkBridge />
-					) : null}
-					<Component {...props} />
-				</>
-			)),
+			React.memo(function ScreenWithDeepLinkBridge(props) {
+				return (
+					<>
+						{Platform.OS !== 'web' && !('OpeningAccount' in SubComponents) ? (
+							<DeepLinkBridge />
+						) : null}
+						<Component {...props} />
+					</>
+				)
+			}),
 	),
 )
 
 const NavigationStack = createNativeStackNavigator<ScreensParams>()
 
-export const Navigation: React.FC = React.memo(() => {
+export const Navigation: React.FC = React.memo(function Navigation() {
 	const colors = useThemeColor()
 	const { scaleSize } = useAppDimensions()
 	const { t } = useTranslation()

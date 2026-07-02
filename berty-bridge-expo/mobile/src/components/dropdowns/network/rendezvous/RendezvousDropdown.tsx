@@ -7,7 +7,7 @@ import { NetworkDropdownPriv } from '../NetworkDropdown.priv'
 import { RendezvousItemsPriv } from './RendezvousItems.priv'
 
 export const RendezvousDropdown = forwardRef(
-	(props: NetworkProps, ref: ForwardedRef<DropdownRef>) => {
+	function RendezvousDropdown(props: NetworkProps, ref: ForwardedRef<DropdownRef>) {
 		const { t } = useTranslation()
 
 		return (

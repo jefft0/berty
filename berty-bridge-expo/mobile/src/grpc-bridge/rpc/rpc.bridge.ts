@@ -48,7 +48,7 @@ const makeStreamClient = <M extends pbjs.Method>(
 			}
 			this.started = true
 
-			var response: beapi.bridge.ClientStreamRecv.IReply
+			let response: beapi.bridge.ClientStreamRecv.IReply
 
 			for (;;) {
 				response = await bridgeClient.clientStreamRecv({ streamId: streamid })

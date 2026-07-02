@@ -15,7 +15,15 @@ const ChatInputButton: React.FC<{
 	disabled?: boolean
 	vOffset?: number
 	loading?: boolean
-}> = React.memo(({ onPress, disabled, iconName, iconPack, iconRatio, vOffset, loading }) => {
+}> = React.memo(function ChatInputButton({
+	onPress,
+	disabled,
+	iconName,
+	iconPack,
+	iconRatio,
+	vOffset,
+	loading,
+}) {
 	const colors = useThemeColor()
 	const size = chatInputButtonSizeMultiplier
 
@@ -64,6 +72,6 @@ export const SendButton: React.FC<{
 	onPress?: TouchableOpacityProps['onPress']
 	disabled?: boolean
 	loading?: boolean
-}> = React.memo(props => (
-	<ChatInputButton iconName='paper-plane-outline' iconRatio={0.56} {...props} />
-))
+}> = React.memo(function SendButton(props) {
+	return <ChatInputButton iconName='paper-plane-outline' iconRatio={0.56} {...props} />
+})

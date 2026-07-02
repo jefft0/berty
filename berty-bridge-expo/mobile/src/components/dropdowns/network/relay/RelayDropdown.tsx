@@ -6,7 +6,10 @@ import { NetworkProps } from '../interfaces'
 import { NetworkDropdownPriv } from '../NetworkDropdown.priv'
 import { RelayItemsPriv } from './RelayItems.priv'
 
-export const RelayDropdown = forwardRef((props: NetworkProps, ref: ForwardedRef<DropdownRef>) => {
+export const RelayDropdown = forwardRef(function RelayDropdown(
+	props: NetworkProps,
+	ref: ForwardedRef<DropdownRef>,
+) {
 	const { t } = useTranslation()
 
 	return (

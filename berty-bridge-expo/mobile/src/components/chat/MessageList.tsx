@@ -33,7 +33,7 @@ import { InfosMultiMember } from './InfosMultiMember'
 import { MemberBar } from './member-bar/MemberBar'
 import { Message } from './message'
 
-const CenteredActivityIndicator: React.FC<ActivityIndicatorProps> = React.memo(props => {
+const CenteredActivityIndicator: React.FC<ActivityIndicatorProps> = React.memo(function CenteredActivityIndicator(props) {
 	const { ...propsToPass } = props
 	return (
 		<View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
@@ -45,7 +45,7 @@ const CenteredActivityIndicator: React.FC<ActivityIndicatorProps> = React.memo(p
 const DateSeparator: React.FC<{
 	current: ParsedInteraction
 	next?: ParsedInteraction
-}> = React.memo(({ current, next }) => {
+}> = React.memo(function DateSeparator({ current, next }) {
 	const { margin } = useStyles()
 
 	if (!next) {
@@ -140,7 +140,13 @@ export const MessageList: React.FC<{
 	setShowStickyDate: (value: boolean) => void
 	isGroup?: boolean
 }> = React.memo(
-	({ id, scrollToMessage: _scrollToMessage, setStickyDate, setShowStickyDate, isGroup }) => {
+	function MessageList({
+		id,
+		scrollToMessage: _scrollToMessage,
+		setStickyDate,
+		setShowStickyDate,
+		isGroup,
+	}) {
 		const { overflow, row, flex } = useStyles()
 		const colors = useThemeColor()
 		const conversation = useConversation(id)

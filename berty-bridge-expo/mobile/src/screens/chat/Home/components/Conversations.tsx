@@ -18,7 +18,7 @@ export const Conversations: React.FC<
 		configurations: Configuration[]
 		addBot: AddBotCallback
 	}
-> = React.memo(({ items, suggestions, configurations, addBot }) => {
+> = React.memo(function Conversations({ items, suggestions, configurations, addBot }) {
 	const { padding } = useStyles()
 	const { t } = useTranslation()
 	const colors = useThemeColor()

@@ -148,11 +148,9 @@ export const Buttons: Story = {
 			<ErrorButton onPress={onPress}>{"Error Button"}</ErrorButton>
 			<Spacer />
 
-			<VerticalButtons
-				children={["Vertical Buttons 1", "Vertical Buttons 2"]}
-				onPressTop={onPress}
-				onPressBottom={onPress}
-			/>
+			<VerticalButtons onPressTop={onPress} onPressBottom={onPress}>
+				{["Vertical Buttons 1", "Vertical Buttons 2"]}
+			</VerticalButtons>
 
 			<View style={styles.floatingButton}>
 				<PrimaryFloatingButton onPress={onPress} />

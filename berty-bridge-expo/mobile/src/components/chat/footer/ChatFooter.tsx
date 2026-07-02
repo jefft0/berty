@@ -36,7 +36,7 @@ type ChatFooterProps = {
 }
 
 export const ChatFooter: React.FC<ChatFooterProps> = React.memo(
-	({ placeholder, convPK, disabled }) => {
+	function ChatFooter({ placeholder, convPK, disabled }) {
 		const { t } = useTranslation()
 		const dispatch = useAppDispatch()
 		const sending = useAppSelector(state => selectChatInputIsSending(state, convPK))

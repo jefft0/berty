@@ -114,7 +114,7 @@ export const Permissions: ScreenFC<'Settings.Permissions'> = ({ route: { params 
 	// listener to handle the change of the app state
 	// (the app state change when we go to the OS settings of the app, so when you come back in the app, we can detect it)
 	useEffect(() => {
-		var sub: NativeEventSubscription
+		let sub: NativeEventSubscription
 
 		if (listenerAvailable) {
 			sub = AppState.addEventListener('change', handleAppStateChange)

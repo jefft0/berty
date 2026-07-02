@@ -14,7 +14,7 @@ import { useTopInset } from '@berty/utils/react-native/useTopInset'
 
 export const DeleteAccount: ScreenFC<'Settings.DeleteAccount'> = () => {
 	const { padding, margin } = useStyles()
-	const _styles = _useStyles()
+	const _styles = useDeleteAccountStyles()
 	const [deleteConfirmation, setDeleteConfirmation] = useState('')
 	const colors = useThemeColor()
 	const { t } = useTranslation()
@@ -65,7 +65,7 @@ export const DeleteAccount: ScreenFC<'Settings.DeleteAccount'> = () => {
 	)
 }
 
-const _useStyles = () => {
+const useDeleteAccountStyles = () => {
 	const { text } = useStyles()
 	const colors = useThemeColor()
 
