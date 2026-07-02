@@ -11,6 +11,7 @@
     "allowJs": true,
     "isolatedModules": true,
     "moduleResolution": "node",
+    "types": [],
   },
   "files": [
     "index.js",
