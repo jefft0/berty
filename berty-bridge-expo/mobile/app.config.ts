@@ -77,7 +77,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
 									bundleIdentifier: `${bundleIdentifier}.NotificationService`,
 									entitlements: {
 										"com.apple.security.application-groups": [
-											"group.tech.berty",
+											getAppGroupID(bundleIdentifier),
 										],
 										"com.apple.developer.associated-domains": [
 											"applinks:berty.tech",
@@ -137,6 +137,20 @@ export default ({ config }: ConfigContext): ExpoConfig => {
 		},
 		owner: "bertytechnologies",
 	};
+};
+
+// Derive the iOS App Group container id from the build variant so that
+// side-by-side installs don't share storage. Must stay in sync with the
+// bridge plugin's getAppGroupID (berty-bridge-expo/plugin/src/appGroup.ts).
+const APP_GROUP_PREFIX = "group.tech.berty";
+export const getAppGroupID = (id?: string): string => {
+	if (!id || id === BUNDLE_IDENTIFIER) {
+		return APP_GROUP_PREFIX;
+	}
+	if (id.startsWith(`${BUNDLE_IDENTIFIER}.`)) {
+		return `${APP_GROUP_PREFIX}${id.slice(BUNDLE_IDENTIFIER.length)}`;
+	}
+	return `${APP_GROUP_PREFIX}.${id}`;
 };
 
 // Dynamically configure the app based on the environment.

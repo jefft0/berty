@@ -7,6 +7,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { execSync } from "child_process";
 
+import { APP_GROUP_PREFIX, getAppGroupID } from "./appGroup";
+
 const TARGET_NAME = "NotificationService";
 const SOURCE_FILES = [
 	"Common.swift",
@@ -94,6 +96,25 @@ const withCopyFiles: ConfigPlugin = (config) => {
 					`${iosPath}/${TARGET_NAME}/${FRAMEWORKS[i]}`,
 					{ recursive: true }
 				);
+			}
+
+			// The NotificationService copies default (production) files that hardcode
+			// the production App Group. Rewrite them so the extension shares the same
+			// per-variant container as the main app, otherwise push decryption and the
+			// keychain-backed keystore read from the wrong (production) group.
+			const appGroupID = getAppGroupID(config.ios?.bundleIdentifier);
+			if (appGroupID !== APP_GROUP_PREFIX) {
+				for (const file of [ENTITLEMENTS_FILE, ...EXT_FILES]) {
+					const targetFile = `${iosPath}/${TARGET_NAME}/${file}`;
+					const contents = fs.readFileSync(targetFile, "utf8");
+					fs.writeFileSync(
+						targetFile,
+						contents.replaceAll(
+							`<string>${APP_GROUP_PREFIX}</string>`,
+							`<string>${appGroupID}</string>`
+						)
+					);
+				}
 			}
 
 			return config;

@@ -1,5 +1,7 @@
 import { ConfigPlugin, withInfoPlist } from "@expo/config-plugins";
 
+import { getAppGroupID } from "./appGroup";
+
 const withIosPlist: ConfigPlugin = (config) => {
 	return withInfoPlist(config, (config) => {
 		if (!config.ios) {
@@ -9,7 +11,9 @@ const withIosPlist: ConfigPlugin = (config) => {
 			config.ios.infoPlist = {};
 		}
 
-		config.ios.infoPlist["appGroupID"] = "group.tech.berty";
+		config.ios.infoPlist["appGroupID"] = getAppGroupID(
+			config.ios?.bundleIdentifier
+		);
 
 		// background
 

@@ -1,5 +1,7 @@
 import { ConfigPlugin, withEntitlementsPlist } from "@expo/config-plugins";
 
+import { getAppGroupID } from "./appGroup";
+
 const withIosEntitlements: ConfigPlugin = (config) => {
 	return withEntitlementsPlist(config, (config) => {
 		if (config.ios?.bundleIdentifier === "tech.berty.ios") {
@@ -12,7 +14,7 @@ const withIosEntitlements: ConfigPlugin = (config) => {
 			"applinks:berty.tech",
 		];
 		config.modResults["com.apple.security.application-groups"] = [
-			"group.tech.berty",
+			getAppGroupID(config.ios?.bundleIdentifier),
 		];
 		config.modResults["keychain-access-groups"] = [
 			"$(AppIdentifierPrefix)tech.berty.ios",
